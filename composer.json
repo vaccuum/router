@@ -1,0 +1,25 @@
+{
+    "license": "MIT",
+    "name": "vaccuum/router",
+    "description": "Router for vaccuum framework.",
+    "keywords": [
+        "vaccuum",
+        "framework",
+        "router"
+    ],
+    "authors": [
+        {
+            "name": "Sebastian Łepczyński",
+            "email": "lepczynski.s@outlook.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Vaccuum\\Router\\": "source/"
+        }
+    },
+    "require": {
+        "php": ">=5.6.0",
+        "nikic/fast-route": "^1.0"
+    }
+}
