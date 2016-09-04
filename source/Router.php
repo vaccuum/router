@@ -2,7 +2,6 @@
 
 use FastRoute\Dispatcher;
 use FastRoute\RouteCollector;
-use Symfony\Component\HttpFoundation\Request;
 use Vaccuum\Contracts\Config\IConfig;
 use Vaccuum\Contracts\Router\IRoute;
 use Vaccuum\Contracts\Router\IRouter;
@@ -22,23 +21,15 @@ class Router implements IRouter
     /** @var Dispatcher */
     protected $dispatcher;
 
-    /** @var Request */
-    protected $request;
-
     /**
      * Router constructor.
      *
      * @param IConfig $config
-     * @param Request $request
      *
      * @throws RouterException
      */
-    public function __construct(
-        IConfig $config,
-        Request $request
-    )
+    public function __construct(IConfig $config)
     {
-        $this->request = $request;
         $this->configure($config);
     }
 
@@ -48,8 +39,8 @@ class Router implements IRouter
         $this->prepareDispatcher();
 
         $data = $this->dispatcher->dispatch(
-            $this->request->getMethod(),
-            $this->request->getRequestUri()
+            $_SERVER['REQUEST_METHOD'],
+            $_SERVER['REQUEST_URI']
         );
 
         return new RouteInfo($data);
